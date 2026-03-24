@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nash Equilibrium Calculator</title>
+</head>
+<body>
+
+    <h1>Enter Payoff Matrix</h1>
+
+    <form method="POST" action="/calculate">
+        <input name="a11" placeholder="A1,B1 Player A" required>
+        <input name="b11" placeholder="A1,B1 Player B" required><br><br>
+
+        <input name="a12" placeholder="A1,B2 Player A" required>
+        <input name="b12" placeholder="A1,B2 Player B" required><br><br>
+
+        <input name="a21" placeholder="A2,B1 Player A" required>
+        <input name="b21" placeholder="A2,B1 Player B" required><br><br>
+
+        <input name="a22" placeholder="A2,B2 Player A" required>
+        <input name="b22" placeholder="A2,B2 Player B" required><br><br>
+
+        <button type="submit">Calculate</button>
+    </form>
+
+    <h2>Result</h2>
+
+    <% if (result && matrix) { %>
+        <table border="1" cellpadding="10">
+            <% for (let i = 0; i < 2; i++) { %>
+                <tr>
+                    <% for (let j = 0; j < 2; j++) { %>
+                        <td style="
+                            padding: 15px;
+                            text-align: center;
+                            <% if (result.some(cell => cell[0] === i && cell[1] === j)) { %>
+                                background-color: lightgreen;
+                            <% } %>
+                        ">
+                            (<%= matrix[i][j].A %>, <%= matrix[i][j].B %>)
+                        </td>
+                    <% } %>
+                </tr>
+            <% } %>
+        </table>
+    <% } %>
+
+</body>
+</html>
